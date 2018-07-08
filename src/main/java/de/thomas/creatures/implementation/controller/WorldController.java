@@ -8,17 +8,11 @@ import de.thomas.creatures.implementation.view.WorldView;
 public class WorldController {
 	private WorldModel worldModel;
 	private WorldView worldView;
-	private WorldUpdater worldUpdater;
 	private MainWindow mainWindow;
 	
 	public WorldController(WorldModel worldModel, WorldView worldView) {
 		this.worldModel = worldModel;
 		this.worldView = worldView;
-		worldUpdater = new WorldUpdater(worldModel, this);
-	}
-
-	public void updateWorld(double delta) {	
-		worldUpdater.updateWorld(delta);
 	}
 
 	public void changeZoomFactor(int zoomChange, boolean relative) {

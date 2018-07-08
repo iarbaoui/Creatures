@@ -8,6 +8,7 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 
 import de.thomas.creatures.implementation.controller.WorldController;
+import de.thomas.creatures.implementation.controller.WorldUpdater;
 import de.thomas.creatures.implementation.factories.WorldFactory;
 import de.thomas.creatures.implementation.model.Creature;
 import de.thomas.creatures.implementation.model.WorldModel;
@@ -21,6 +22,7 @@ public class CreaturesMain implements WorldCreator, ActionListener {
 	private WorldModel worldModel;
 	private WorldView view;
 	private WorldController controller;
+	private WorldUpdater updater;
 	private WorldInputListener listener;
 	private Statistics statistics;
 	private MainWindow mainWindow;
@@ -42,6 +44,7 @@ public class CreaturesMain implements WorldCreator, ActionListener {
 		
 		view = new WorldView(worldModel);
 		controller = new WorldController(worldModel, view);
+		updater = new WorldUpdater(worldModel, controller);
 		listener = new WorldInputListener(controller);
 		statistics = new Statistics(worldModel);
 		
@@ -75,7 +78,7 @@ public class CreaturesMain implements WorldCreator, ActionListener {
 			}
 			
 			mainWindow.update(delta);
-			controller.updateWorld(delta);
+			updater.updateWorld(delta);
 			statistics.update(delta);
 		}
 	}
