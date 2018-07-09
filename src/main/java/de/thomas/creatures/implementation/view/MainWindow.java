@@ -179,7 +179,9 @@ public class MainWindow extends JFrame implements ActionListener , ChangeListene
 			JSlider source = (JSlider) e.getSource();
 			int value = source.getValue();
 			
-			controller.setSpeed(value);
+			setSpeed(value);
+			setSpeedSlider(value);
+
 		}
 		else if (e.getSource() == maxFoodSpinner) {
 			JSpinner source = (JSpinner) e.getSource();
@@ -191,10 +193,6 @@ public class MainWindow extends JFrame implements ActionListener , ChangeListene
 		isExternalUpdate = true;
 		speedSlider.setValue((int) d);
 		isExternalUpdate = false;
-	}
-
-	public void setViewInputFocus() {
-		view.requestFocus();
 	}
 
 	@Override
@@ -252,5 +250,11 @@ public class MainWindow extends JFrame implements ActionListener , ChangeListene
 
 	public void setWorldModel(WorldModel worldModel) {
 		this.worldModel = worldModel;
+	}
+
+	private void setSpeed(double speed) {
+		if (speed >= 0 && speed <= 15) {
+			this.worldModel.speedFactor = speed;
+		}
 	}
 }

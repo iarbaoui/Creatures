@@ -2,13 +2,11 @@ package de.thomas.creatures.implementation.controller;
 
 import de.thomas.creatures.implementation.model.Creature;
 import de.thomas.creatures.implementation.model.WorldModel;
-import de.thomas.creatures.implementation.view.MainWindow;
 import de.thomas.creatures.implementation.view.WorldView;
 
 public class WorldController {
 	private WorldModel worldModel;
 	private WorldView worldView;
-	private MainWindow mainWindow;
 	
 	public WorldController(WorldModel worldModel, WorldView worldView) {
 		this.worldModel = worldModel;
@@ -59,15 +57,10 @@ public class WorldController {
 	public void setSpeed(double speed) {
 		if (speed >= 0 && speed <= 15) {
 			WorldModel.speedFactor = speed;
-			mainWindow.setSpeedSlider(speed);
 		}
 	}
 	
-	public void setMainWindow(MainWindow mainWindow) {
-		this.mainWindow = mainWindow;
-	}
-	
 	public void setViewInputFocus() {
-		mainWindow.setViewInputFocus();
+		worldView.requestFocus();
 	}
 }

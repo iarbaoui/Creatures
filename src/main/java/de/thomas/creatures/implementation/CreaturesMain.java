@@ -54,8 +54,6 @@ public class CreaturesMain implements WorldCreator, ActionListener {
 		
 		mainWindow = new MainWindow(view, controller, statistics, this, worldModel);
 		
-		controller.setMainWindow(mainWindow);
-		
 		timer = new Timer(REFRESH_TIME, this);
 		timer.start();
 		lastTime = System.nanoTime();
@@ -121,8 +119,6 @@ public class CreaturesMain implements WorldCreator, ActionListener {
 		mainWindow.setStatistics(statistics);
 		mainWindow.setWorldCreator(this);
 		mainWindow.setWorldModel(worldModel);
-		
-		controller.setMainWindow(mainWindow);
 		
 		timer = new Timer(REFRESH_TIME, this);
 		timer.start();
