@@ -3,8 +3,6 @@ package de.thomas.creatures.implementation.ai;
 import java.awt.Point;
 import java.util.Vector;
 
-import de.thomas.creatures.implementation.model.Food;
-
 public class BasicAI extends CreatureAI {
 	private Vector<Point.Double> wayPoints;
 	private final int WAY_POINT_NUMBER = 10;
@@ -38,7 +36,7 @@ public class BasicAI extends CreatureAI {
 	}
 
 	@Override
-	public Point.Double update(Point.Double currentTarget, Point.Double position, Food nearFood, Point.Double nearMatePosition, double energy, double maxEnergy) {
+	public Point.Double update(Point.Double currentTarget, Point.Double position, Point.Double nearFoodPosition, double nearFoodValue, Point.Double nearMatePosition, double energy, double maxEnergy) {
 		Point.Double target = currentTarget;
 		//Move random
 		if (currentTarget == null) {
@@ -46,8 +44,8 @@ public class BasicAI extends CreatureAI {
 			target = point;
 		}
 		//Goto food
-		if (nearFood != null && energy + nearFood.getValue() <= maxEnergy) {
-			target = nearFood.getPosition();
+		if (nearFoodPosition != null && energy + nearFoodValue <= maxEnergy) {
+			target = nearFoodPosition;
 		}
 		//Goto mate
 		if (nearMatePosition != null) {

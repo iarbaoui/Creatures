@@ -76,7 +76,16 @@ public class Creature {
 
 	public void update(Food nearFood, Point.Double nearMatePosition) {
 		// Update the current creature target with the newly decided target after ai update
-		target = ai.update(target, position, nearFood, nearMatePosition, energy, maxEnergy);
+		Point.Double nearFoodPosition = null;
+		double nearFoodValue = 0;
+		if(nearFood == null){
+			nearFoodPosition = null;
+		}
+		else{
+			nearFoodPosition = nearFood.getPosition();
+			nearFoodValue = nearFood.getValue();
+		}
+		target = ai.update(target, position, nearFoodPosition, nearFoodValue , nearMatePosition, energy, maxEnergy);
 	}
 
 	public Point.Double getPosition() {

@@ -218,7 +218,7 @@ public class MainWindow extends JFrame implements ActionListener , ChangeListene
 			}
 		}
 		else if (e.getSource() == createWorldItem) {
-			new CreateWorldView(worldCreator);
+			new CreateWorldView(controller, worldCreator);
 		}
 		else if (e.getSource() == createCreatureItem) {
 			new CreateCreatureView(controller, worldModel.getWidth(), worldModel.getHeight());

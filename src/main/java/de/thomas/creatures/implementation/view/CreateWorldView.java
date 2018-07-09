@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import de.thomas.creatures.implementation.WorldCreator;
+import de.thomas.creatures.implementation.controller.WorldController;
 import de.thomas.creatures.implementation.factories.WorldFactory;
 import de.thomas.creatures.implementation.model.WorldModel;
 import de.thomas.creatures.implementation.util.AssertionException;
@@ -23,6 +24,7 @@ public class CreateWorldView extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	private WorldCreator worldCreator;
+	private WorldController worldController;
 
 	private JPanel backPanel;
 	private JLabel widthLabel;
@@ -33,8 +35,9 @@ public class CreateWorldView extends JFrame implements ActionListener {
 	private JTextField foodRateInput;
 	private JButton createButton;
 
-	public CreateWorldView(WorldCreator worldCreator) {
+	public CreateWorldView(WorldController worldController, WorldCreator worldCreator) {
 		this.worldCreator = worldCreator;
+		this.worldController = worldController;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(220, 150);
