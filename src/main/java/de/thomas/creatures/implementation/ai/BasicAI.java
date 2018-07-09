@@ -14,16 +14,16 @@ public class BasicAI extends CreatureAI {
 	}
 
 	@Override
-	public void init() {
-		initWayPoints();
+	public void init(double worldWidth, double worldHeight) {
+		initWayPoints(worldWidth, worldHeight);
 	}
 
-	private void initWayPoints() {
+	private void initWayPoints(double worldWidth, double worldHeight) {
 		int wayPointNumberX = WAY_POINT_NUMBER;
-		int wayPointNumberY = (int) (WAY_POINT_NUMBER * ((double) worldModel.getHeight() / (double) worldModel.getWidth()));
+		int wayPointNumberY = (int) (WAY_POINT_NUMBER * ((double) worldHeight / (double) worldWidth));
 
-		double deviationX = worldModel.getWidth() / wayPointNumberX;
-		double deviationY = worldModel.getHeight() / wayPointNumberY;
+		double deviationX = worldWidth / wayPointNumberX;
+		double deviationY = worldHeight / wayPointNumberY;
 
 		double maxRandom = deviationX / 2;
 
@@ -40,24 +40,19 @@ public class BasicAI extends CreatureAI {
 	@Override
 	public Point.Double update(Point.Double currentTarget, Point.Double position, Food nearFood, Point.Double nearMatePosition, double energy, double maxEnergy) {
 		Point.Double target = currentTarget;
-
 		//Move random
 		if (currentTarget == null) {
 			Point.Double point = wayPoints.get((int) (Math.random() * wayPoints.size()));
 			target = point;
 		}
-
 		//Goto food
 		if (nearFood != null && energy + nearFood.getValue() <= maxEnergy) {
 			target = nearFood.getPosition();
 		}
-
 		//Goto mate
-		//Point.Double nearestMatePosition = worldModel.getNearestMate(position, Creature.Gender gender, double visionRange, double energy, double matingEnergy, boolean isPregnant)
 		if (nearMatePosition != null) {
 			target = nearMatePosition;
 		}
-
 		return target;
 	}
 

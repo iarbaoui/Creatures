@@ -7,7 +7,7 @@ import java.awt.*;
 public class DoNothingAI extends CreatureAI {
 
 	@Override
-	public void init() {
+	public void init(double worldWidth, double worldHeight) {
 	}
 
 	@Override

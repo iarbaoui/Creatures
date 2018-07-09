@@ -20,10 +20,8 @@ public class WorldFactory {
 		CreatureAI ai = new BasicAI();
 		
 		creatures[0].setAi(ai);
-		
-		ai.setWorldModel(world);
 
-		ai.init();
+		ai.init(world.getWidth(), world.getHeight());
 		
 		
 		Food[] foods = {new Food(new Point.Double(150, 150), 100),
@@ -67,8 +65,7 @@ public class WorldFactory {
 			CreatureAI ai = new BasicAI();
 			creatures[i].setAi(ai);
 
-			ai.setWorldModel(world);
-			ai.init();
+			ai.init(world.getWidth(), world.getHeight());
 			
 			world.addCreature(creatures[i]);
 		}

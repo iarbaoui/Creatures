@@ -2,7 +2,6 @@ package de.thomas.creatures.implementation.controller;
 
 import de.thomas.creatures.implementation.model.Creature;
 import de.thomas.creatures.implementation.model.WorldModel;
-import de.thomas.creatures.implementation.view.WorldView;
 
 public class WorldController {
 	private WorldModel worldModel;
@@ -13,8 +12,7 @@ public class WorldController {
 
 	public void addCreature(Creature creature) {
 		worldModel.addCreature(creature);
-		creature.getAi().setWorldModel(worldModel);
-		creature.getAi().init();
+		creature.getAi().init(worldModel.getWidth(), worldModel.getHeight());
 	}
 
 	public void changeSpeed(double speedChange) {

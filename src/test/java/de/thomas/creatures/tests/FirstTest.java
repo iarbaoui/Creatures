@@ -25,9 +25,8 @@ public class FirstTest {
 		
 		BasicAI basicAI = new BasicAI();
 		creature.setAi(basicAI);
-		basicAI.setWorldModel(model);
 		
-		basicAI.init();
+		basicAI.init(model.getWidth(), model.getHeight());
 		
 		for (Point.Double p : basicAI.getWayPoints()) {
 			assertEquals(true, p.x <= width);
