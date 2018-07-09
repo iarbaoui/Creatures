@@ -22,7 +22,7 @@ public class WorldFactory {
 		creatures[0].setAi(ai);
 		
 		ai.setWorldModel(world);
-		ai.setCreature(creatures[0]);
+
 		ai.init();
 		
 		
@@ -66,8 +66,7 @@ public class WorldFactory {
 			
 			CreatureAI ai = new BasicAI();
 			creatures[i].setAi(ai);
-			
-			ai.setCreature(creatures[i]);
+
 			ai.setWorldModel(world);
 			ai.init();
 			

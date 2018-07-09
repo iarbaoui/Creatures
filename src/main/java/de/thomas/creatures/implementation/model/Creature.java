@@ -6,8 +6,9 @@ import de.thomas.creatures.implementation.ai.CreatureAI;
 import de.thomas.creatures.implementation.ai.DoNothingAI;
 
 public class Creature {
-	public enum Gender { MALE, FEMALE };
-	
+	public enum Gender {MALE, FEMALE}
+
+	;
 	private double life;
 	private double maxLife;
 	private double energy;
@@ -23,38 +24,38 @@ public class Creature {
 	private double breedTime;
 	private boolean pregnant;
 	private Creature fetus;
-	
+
 	private Point.Double target;
-	
+
 	//For test purposes
 	public Creature(Point.Double position, Gender gender) {
 		this(
-				1000, 
-				1000, 
-				500, 
+				1000,
+				1000,
+				500,
 				position,
-				24, 
-				100, 
-				gender, 
-				new DoNothingAI(), 
-				100, 
-				200, 
+				24,
+				100,
+				gender,
+				new DoNothingAI(),
+				100,
+				200,
 				5);
 	}
-	
+
 	public Creature(
-			double energy, 
-			double maxEnergy, 
+			double energy,
+			double maxEnergy,
 			double maxLife,
-			Point.Double position, 
-			double speed, 
-			double visionRange, 
-			Gender gender, 
-			CreatureAI ai, 
+			Point.Double position,
+			double speed,
+			double visionRange,
+			Gender gender,
+			CreatureAI ai,
 			double matingEnergyNeeded,
-			double breedLength, 
+			double breedLength,
 			double breedProgressSpeed) {
-		
+
 		this.energy = energy;
 		this.maxEnergy = maxEnergy;
 		this.setMaxLife(maxLife);
@@ -66,17 +67,18 @@ public class Creature {
 		this.matingEnergyNeeded = matingEnergyNeeded;
 		this.breedLength = breedLength;
 		this.breedProgressSpeed = breedProgressSpeed;
-		
+
 		this.target = null;
 		this.pregnant = false;
 		this.breedTime = breedLength;
 		this.life = 0;
 	}
 
-	public void update() {
-		ai.update();
+	public void update(Food nearFood, Point.Double nearMatePosition) {
+		// Update the current creature target with the newly decided target after ai update
+		target = ai.update(target, position, nearFood, nearMatePosition, energy, maxEnergy);
 	}
-	
+
 	public Point.Double getPosition() {
 		return position;
 	}
@@ -92,11 +94,11 @@ public class Creature {
 	public void setSpeed(double speed) {
 		this.speed = speed;
 	}
-	
+
 	public Gender getGender() {
 		return gender;
 	}
-	
+
 	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
@@ -204,4 +206,6 @@ public class Creature {
 	public void setFetus(Creature fetus) {
 		this.fetus = fetus;
 	}
+
 }
+

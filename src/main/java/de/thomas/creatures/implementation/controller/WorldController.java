@@ -44,7 +44,6 @@ public class WorldController {
 
 	public void addCreature(Creature creature) {
 		worldModel.addCreature(creature);
-		creature.getAi().setCreature(creature);
 		creature.getAi().setWorldModel(worldModel);
 		creature.getAi().init();
 	}

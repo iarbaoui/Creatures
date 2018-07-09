@@ -3,7 +3,6 @@ package de.thomas.creatures.implementation.ai;
 import java.awt.Point;
 import java.util.Vector;
 
-import de.thomas.creatures.implementation.model.Creature;
 import de.thomas.creatures.implementation.model.Food;
 
 public class BasicAI extends CreatureAI {
@@ -39,64 +38,27 @@ public class BasicAI extends CreatureAI {
 	}
 
 	@Override
-	public void update() {
-		//Move random
-		if (creature.getTarget() == null) {
-			Point.Double point = wayPoints.get((int) (Math.random() * wayPoints.size()));
-			creature.setTarget(point);
-		}
+	public Point.Double update(Point.Double currentTarget, Point.Double position, Food nearFood, Point.Double nearMatePosition, double energy, double maxEnergy) {
+		Point.Double target = currentTarget;
 
-		Food nearestFood = getNearestFood();
+		//Move random
+		if (currentTarget == null) {
+			Point.Double point = wayPoints.get((int) (Math.random() * wayPoints.size()));
+			target = point;
+		}
 
 		//Goto food
-		if (nearestFood != null && creature.getEnergy() + nearestFood.getValue() <= creature.getMaxEnergy()) {
-			creature.setTarget(nearestFood.getPosition());
+		if (nearFood != null && energy + nearFood.getValue() <= maxEnergy) {
+			target = nearFood.getPosition();
 		}
-		
+
 		//Goto mate
-		Creature nearestMate = getNearestMate();
-		
-		if (nearestMate != null) {
-			creature.setTarget(nearestMate.getPosition());
-		}
-	}
-
-	private Food getNearestFood() {
-		Food nearestFood = null;
-		double nearestDistance = Double.MAX_VALUE;
-
-		for (Food f : getWorldModel().getFoods()) {
-			double distance = f.getPosition().distance(getCreature().getPosition());
-
-			if (distance < getCreature().getVisionRange() && distance < nearestDistance) {
-				nearestFood = f;
-				nearestDistance = distance;
-			}
+		//Point.Double nearestMatePosition = worldModel.getNearestMate(position, Creature.Gender gender, double visionRange, double energy, double matingEnergy, boolean isPregnant)
+		if (nearMatePosition != null) {
+			target = nearMatePosition;
 		}
 
-		return nearestFood;
-	}
-	
-	private Creature getNearestMate() {
-		Creature nearestMate = null;
-		double nearestDistance = Double.MAX_VALUE;
-
-		for (Creature c : getWorldModel().getCreatures()) {
-			double distance = c.getPosition().distance(getCreature().getPosition());
-			
-			if (getCreature().getGender() != c.getGender() 
-					&& distance < getCreature().getVisionRange() 
-					&& distance < nearestDistance 
-					&& getCreature().getEnergy() > getCreature().getMatingEnergyNeeded() 
-					&& c.getEnergy() > c.getMatingEnergyNeeded() &&
-					! getCreature().isPregnant() && ! c.isPregnant()) {
-				
-				nearestMate = c;
-				nearestDistance = distance;
-			}
-		}
-
-		return nearestMate;
+		return target;
 	}
 
 	public Vector<Point.Double> getWayPoints() {

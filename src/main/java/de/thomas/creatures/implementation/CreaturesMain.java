@@ -1,6 +1,7 @@
 package de.thomas.creatures.implementation;
 
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,6 +12,7 @@ import de.thomas.creatures.implementation.controller.WorldController;
 import de.thomas.creatures.implementation.controller.WorldUpdater;
 import de.thomas.creatures.implementation.factories.WorldFactory;
 import de.thomas.creatures.implementation.model.Creature;
+import de.thomas.creatures.implementation.model.Food;
 import de.thomas.creatures.implementation.model.WorldModel;
 import de.thomas.creatures.implementation.statistics.Statistics;
 import de.thomas.creatures.implementation.view.MainWindow;
@@ -72,7 +74,9 @@ public class CreaturesMain implements WorldCreator, ActionListener {
 		
 		if (WorldModel.speedFactor > 0) {
 			for (Creature c : worldModel.getCreatures()) {
-				c.update();
+				Food nearFood =  worldModel.getNearestFood(c);
+				Point.Double nearMatePosition =  worldModel.getNearestMate(c);
+				c.update(nearFood, nearMatePosition);
 			}
 			
 			mainWindow.update(delta);

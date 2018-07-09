@@ -24,7 +24,7 @@ public class FirstTest {
 		Creature creature = new Creature(new Point.Double(100, 100), Gender.MALE);
 		
 		BasicAI basicAI = new BasicAI();
-		basicAI.setCreature(creature);
+		creature.setAi(basicAI);
 		basicAI.setWorldModel(model);
 		
 		basicAI.init();
