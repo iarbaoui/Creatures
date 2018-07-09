@@ -6,40 +6,9 @@ import de.thomas.creatures.implementation.view.WorldView;
 
 public class WorldController {
 	private WorldModel worldModel;
-	private WorldView worldView;
 	
-	public WorldController(WorldModel worldModel, WorldView worldView) {
+	public WorldController(WorldModel worldModel) {
 		this.worldModel = worldModel;
-		this.worldView = worldView;
-	}
-
-	public void changeZoomFactor(int zoomChange, boolean relative) {
-		int zoomFactor = worldView.getZoomFactor();
-
-		if (zoomFactor + zoomChange > 0) {
-			worldView.setZoomFactor(zoomFactor + zoomChange);
-
-			if (relative) {
-				if (zoomChange > 0) {
-					worldView.setOffsetX(worldView.getOffsetX() + (int) ((worldView.getSize().width) * 0.8) / 2);
-					worldView.setOffsetY(worldView.getOffsetY() + worldView.getSize().height / 2);
-				}
-				else {
-					worldView.setOffsetX(worldView.getOffsetX() -  (int) ((worldView.getSize().width) * 0.8) / 2);
-					worldView.setOffsetY(worldView.getOffsetY() - worldView.getSize().height / 2);
-				}
-			}
-		}
-	}
-
-	public void changeOffsetX(int offsetChange) {
-		int offsetX = worldView.getOffsetX();
-		worldView.setOffsetX(offsetX + offsetChange);
-	}
-
-	public void changeOffsetY(int offsetChange) {
-		int offsetY = worldView.getOffsetY();
-		worldView.setOffsetY(offsetY + offsetChange);
 	}
 
 	public void addCreature(Creature creature) {
@@ -52,14 +21,10 @@ public class WorldController {
 		double change = WorldModel.speedFactor + speedChange;
 		setSpeed(change);
 	}
-	
-	public void setSpeed(double speed) {
+
+	private void setSpeed(double speed) {
 		if (speed >= 0 && speed <= 15) {
 			WorldModel.speedFactor = speed;
 		}
-	}
-	
-	public void setViewInputFocus() {
-		worldView.requestFocus();
 	}
 }

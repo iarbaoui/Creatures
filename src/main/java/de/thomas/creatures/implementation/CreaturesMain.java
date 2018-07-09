@@ -45,9 +45,9 @@ public class CreaturesMain implements WorldCreator, ActionListener {
 		
 		
 		view = new WorldView(worldModel);
-		controller = new WorldController(worldModel, view);
+		controller = new WorldController(worldModel);
 		updater = new WorldUpdater(worldModel, controller);
-		listener = new WorldInputListener(controller);
+		listener = new WorldInputListener(controller, view);
 		statistics = new Statistics(worldModel);
 		
 		view.addKeyListener(listener);
@@ -74,9 +74,7 @@ public class CreaturesMain implements WorldCreator, ActionListener {
 		
 		if (WorldModel.speedFactor > 0) {
 			for (Creature c : worldModel.getCreatures()) {
-				Food nearFood =  worldModel.getNearestFood(c);
-				Point.Double nearMatePosition =  worldModel.getNearestMate(c);
-				c.update(nearFood, nearMatePosition);
+				c.update(worldModel.getNearestFood(c), worldModel.getNearestMate(c));
 			}
 			
 			mainWindow.update(delta);
@@ -110,8 +108,8 @@ public class CreaturesMain implements WorldCreator, ActionListener {
 		
 		
 		view = new WorldView(worldModel);
-		controller = new WorldController(worldModel, view);
-		listener = new WorldInputListener(controller);
+		controller = new WorldController(worldModel);
+		listener = new WorldInputListener(controller, view);
 		statistics = new Statistics(worldModel);
 		
 		view.addKeyListener(listener);
