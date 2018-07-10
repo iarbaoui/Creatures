@@ -27,7 +27,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.apache.commons.io.FilenameUtils;
 
-import de.thomas.creatures.implementation.WorldCreator;
+import de.thomas.creatures.implementation.interfaces.WorldCreator;
 import de.thomas.creatures.implementation.controller.WorldController;
 import de.thomas.creatures.implementation.files.StatisticsSerializer;
 import de.thomas.creatures.implementation.model.WorldModel;
@@ -218,7 +218,7 @@ public class MainWindow extends JFrame implements ActionListener , ChangeListene
 			}
 		}
 		else if (e.getSource() == createWorldItem) {
-			new CreateWorldView(controller, worldCreator);
+			new CreateWorldView(worldCreator);
 		}
 		else if (e.getSource() == createCreatureItem) {
 			new CreateCreatureView(controller, worldModel.getWidth(), worldModel.getHeight());

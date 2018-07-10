@@ -1,7 +1,6 @@
 package de.thomas.creatures.implementation;
 
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,8 +10,8 @@ import javax.swing.UIManager;
 import de.thomas.creatures.implementation.controller.WorldController;
 import de.thomas.creatures.implementation.controller.WorldUpdater;
 import de.thomas.creatures.implementation.factories.WorldFactory;
+import de.thomas.creatures.implementation.interfaces.WorldCreator;
 import de.thomas.creatures.implementation.model.Creature;
-import de.thomas.creatures.implementation.model.Food;
 import de.thomas.creatures.implementation.model.WorldModel;
 import de.thomas.creatures.implementation.statistics.Statistics;
 import de.thomas.creatures.implementation.view.MainWindow;

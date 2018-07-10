@@ -1,4 +1,4 @@
-package de.thomas.creatures.implementation;
+package de.thomas.creatures.implementation.interfaces;
 
 import de.thomas.creatures.implementation.model.WorldModel;
 
