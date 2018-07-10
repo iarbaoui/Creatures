@@ -90,7 +90,7 @@ public class WorldModel {
 		return nearestFood;
 	}
 
-	public Point.Double getNearestMate(Creature creature) {
+	public Creature getNearestMate(Creature creature) {
 		Creature nearestMate = null;
 		double nearestDistance = Double.MAX_VALUE;
 
@@ -109,11 +109,6 @@ public class WorldModel {
 			}
 		}
 
-		if(nearestMate == null){
-			return null;
-		}
-		else {
-			return nearestMate.getPosition();
-		}
+		return nearestMate;
 	}
 }

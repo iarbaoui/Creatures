@@ -74,18 +74,22 @@ public class Creature {
 		this.life = 0;
 	}
 
-	public void update(Food nearFood, Point.Double nearMatePosition) {
+	public void update(Food nearFood, Creature nearMate) {
 		// Update the current creature target with the newly decided target after ai update
 		Point.Double nearFoodPosition = null;
+		Point.Double nearMatePosition = null;
 		double nearFoodValue = 0;
-		if(nearFood == null){
-			nearFoodPosition = null;
-		}
-		else{
+
+		if(nearFood != null){
 			nearFoodPosition = nearFood.getPosition();
 			nearFoodValue = nearFood.getValue();
 		}
-		target = ai.update(target, position, nearFoodPosition, nearFoodValue , nearMatePosition, energy, maxEnergy);
+
+		if(nearMate != null){
+			nearMatePosition = nearMate.getPosition();
+		}
+
+		target = ai.update(target, position, nearFoodPosition, nearFoodValue , nearMatePosition , energy, maxEnergy);
 	}
 
 	public Point.Double getPosition() {
